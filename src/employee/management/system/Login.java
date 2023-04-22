@@ -53,6 +53,7 @@ public class Login extends JFrame implements ActionListener{
         setSize(600, 300);
         setLocation(450, 200);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -61,12 +62,12 @@ public class Login extends JFrame implements ActionListener{
             String password = tfpassword.getText();
             
             Conn c = new Conn();
-            String query = "select * from login where username = '"+username+"' and password = '"+password+"'";
+            String query = "select role from login where username = '"+username+"' and password = '"+password+"'";
             
             ResultSet rs = c.s.executeQuery(query);
             if (rs.next()) {
                 setVisible(false);
-                new Home();
+                new Home(rs.getString("role"));
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username or password");
                 setVisible(false);

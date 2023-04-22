@@ -38,6 +38,7 @@ public class Splash extends JFrame implements ActionListener {
         setSize(1170, 650);
         setLocation(200, 50);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Heading Blinking
         while(true) {

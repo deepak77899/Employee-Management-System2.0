@@ -9,8 +9,10 @@ public class RemoveEmployee extends JFrame implements ActionListener {
     
     Choice cEmpId;
     JButton delete, back;
+    String role;
     
-    RemoveEmployee() {
+    RemoveEmployee(String role) {
+        this.role=role;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -111,6 +113,7 @@ public class RemoveEmployee extends JFrame implements ActionListener {
         setSize(1000, 400);
         setLocation(300, 150);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -121,17 +124,17 @@ public class RemoveEmployee extends JFrame implements ActionListener {
                 c.s.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Employee Information Deleted Sucessfully");
                 setVisible(false);
-                new Home();
+                new Home(role);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             setVisible(false);
-            new Home();
+            new Home(role);
         }
     }
 
     public static void main(String[] args) {
-        new RemoveEmployee();
+        
     }
 }

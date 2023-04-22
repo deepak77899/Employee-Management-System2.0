@@ -11,9 +11,10 @@ public class ViewEmployee extends JFrame implements ActionListener{
     JTable table;
     Choice cemployeeId;
     JButton search, print, update, back;
+    String role;
     
-    ViewEmployee() {
-        
+    ViewEmployee(String role) {
+        this.role=role;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -72,6 +73,7 @@ public class ViewEmployee extends JFrame implements ActionListener{
         setSize(900, 700);
         setLocation(300, 100);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -92,14 +94,14 @@ public class ViewEmployee extends JFrame implements ActionListener{
             }
         } else if (ae.getSource() == update) {
             setVisible(false);
-            new UpdateEmployee(cemployeeId.getSelectedItem());
+            new UpdateEmployee(cemployeeId.getSelectedItem(),role);
         } else {
             setVisible(false);
-            new Home();
+            new Home(role);
         }
     }
 
     public static void main(String[] args) {
-        new ViewEmployee();
+        
     }
 }

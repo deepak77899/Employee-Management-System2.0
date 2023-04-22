@@ -16,8 +16,10 @@ public class AddEmployee extends JFrame implements ActionListener{
     JComboBox cbeducation;
     JLabel lblempId;
     JButton add, back;
+    String role;
     
-    AddEmployee() {
+    AddEmployee(String role) {
+        this.role=role;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -145,6 +147,7 @@ public class AddEmployee extends JFrame implements ActionListener{
         setSize(900, 700);
         setLocation(300, 50);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -167,17 +170,17 @@ public class AddEmployee extends JFrame implements ActionListener{
                 conn.s.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Details added successfully");
                 setVisible(false);
-                new Home();
+                new Home(role);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             setVisible(false);
-            new Home();
+            new Home(role);
         }
     }
 
     public static void main(String[] args) {
-        new AddEmployee();
+        
     }
 }

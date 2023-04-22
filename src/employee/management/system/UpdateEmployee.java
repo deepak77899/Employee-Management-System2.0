@@ -10,10 +10,11 @@ public class UpdateEmployee extends JFrame implements ActionListener{
     JTextField tfeducation, tffname, tfaddress, tfphone, tfaadhar, tfemail, tfsalary, tfdesignation;
     JLabel lblempId;
     JButton add, back;
-    String empId;
+    String empId,role;
     
-    UpdateEmployee(String empId) {
+    UpdateEmployee(String empId,String role) {
         this.empId = empId;
+        this.role=role;
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
@@ -161,6 +162,7 @@ public class UpdateEmployee extends JFrame implements ActionListener{
         setSize(900, 700);
         setLocation(300, 50);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -179,17 +181,16 @@ public class UpdateEmployee extends JFrame implements ActionListener{
                 conn.s.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Details updated successfully");
                 setVisible(false);
-                new Home();
+                new Home(role);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             setVisible(false);
-            new Home();
+            new Home(role);
         }
     }
 
     public static void main(String[] args) {
-        new UpdateEmployee("");
     }
 }
