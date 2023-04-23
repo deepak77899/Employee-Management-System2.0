@@ -49,6 +49,7 @@ public class Home extends JFrame implements ActionListener {
         chat.setBounds(750, 200, 150, 40);
         chat.addActionListener(this);
         image.add(chat);
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -65,7 +66,7 @@ public class Home extends JFrame implements ActionListener {
             }
         });
         setSize(1120, 630);
-        setLocation(250, 100);
+        setLocation(100, 100);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
