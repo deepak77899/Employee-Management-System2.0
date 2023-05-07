@@ -81,7 +81,15 @@ public class Home extends JFrame implements ActionListener {
         } else if (ae.getSource() == update) {
             setVisible(false);
             new ViewEmployee(role);
-        } else {
+        }else if (ae.getSource() == chat) {
+            setVisible(false);
+            if(role.equals("Employee")){
+                new Client(role);
+            }else{
+                new Server(role);
+            }
+        }
+        else {
             setVisible(false);
             new RemoveEmployee(role);
         }

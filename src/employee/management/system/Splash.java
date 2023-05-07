@@ -8,61 +8,75 @@ public class Splash extends JFrame implements ActionListener {
     
     Splash() {
         
-        getContentPane().setBackground(Color.WHITE);
-        setLayout(null);
+        setLayout(new FlowLayout());
         
-        //Heading
-        JLabel heading = new JLabel("EMPLOYEE MANAGEMENT SYSTEM");
-        heading.setBounds(80, 30, 1200, 60);
-        heading.setFont(new Font("serif", Font.PLAIN, 60));
-        heading.setForeground(Color.RED);
-        add(heading);
+        //Screen Dimensions
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final int widthScreen = screenSize.width;
+        final int heightScreen = screenSize.height;
         
         //Background Image
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/front.jpg"));
-        Image i2 = i1.getImage().getScaledInstance(1100, 700, Image.SCALE_DEFAULT);
-        ImageIcon i3 = new ImageIcon(i2);
-        JLabel image = new JLabel(i3);
-        image.setBounds(50, 100, 1050, 500);
-        add(image);
+        
+        //Heading
+        JLabel heading = new JLabel("EMPLOYEE MANAGEMENT SYSTEM",SwingConstants.CENTER);
+        heading.setPreferredSize(new Dimension(1200,60));
+        heading.setFont(new Font("serif", Font.PLAIN, 60));
+        heading.setForeground(Color.RED);
+        
+        
         
         //Continue Button
         JButton clickhere = new JButton("Login As Admin");
-        clickhere.setBounds(150, 350, 300, 70);
+        clickhere.setPreferredSize(new Dimension(300,70));
         clickhere.setBackground(Color.BLACK);
         clickhere.setForeground(Color.WHITE);
         clickhere.addActionListener(this);
-        image.add(clickhere);
         
         //Continue Button
         JButton clickhere2 = new JButton("Login As Employee");
-        clickhere2.setBounds(620, 350, 300, 70);
+        clickhere2.setPreferredSize(new Dimension(300,70));
         clickhere2.setBackground(Color.BLACK);
         clickhere2.setForeground(Color.WHITE);
         clickhere2.addActionListener(this);
-        image.add(clickhere2);
         
+        //panel for all content
+        JPanel p=new JPanel();
+        p.setPreferredSize(new Dimension(widthScreen,heightScreen));
+        p.setOpaque(false);
+        p.setLayout(new GridLayout(2,1));
+        p.add(heading);
+        
+        //panel for buttons
+        JPanel pbtn=new JPanel();
+        GridBagLayout g=new GridBagLayout();
+        GridBagConstraints gbc=new GridBagConstraints();
+        pbtn.setLayout(g);
+        
+        gbc.gridx=0;
+        gbc.gridy=0;
+        gbc.weightx=2;
+        
+        pbtn.add(clickhere,gbc);
+        gbc.gridx=2;
+        gbc.gridy=0;
+        pbtn.add(clickhere2,gbc);
+        pbtn.setOpaque(false);
+        
+        p.add(pbtn);
+        
+        //adding image to the background
+       JLabel backImage=new JLabel(i1);
+       backImage.setPreferredSize(new Dimension(i1.getIconWidth(), i1.getIconHeight()));
+       backImage.setLayout(new FlowLayout());
+        backImage.add(p);
+       
+        setContentPane(backImage);
         setSize(1170, 650);
         setLocation(100, 50);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        //Heading Blinking
-        while(true) {
-            heading.setVisible(false);
-            try {
-                Thread.sleep(500);
-            } catch (Exception e){
-                
-            }
-            
-            heading.setVisible(true);
-            try {
-                Thread.sleep(500);
-            } catch (Exception e){
-                
-            }
-        }
     }
     
     public void actionPerformed(ActionEvent ae) {
