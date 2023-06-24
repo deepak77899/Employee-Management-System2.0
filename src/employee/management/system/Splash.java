@@ -16,13 +16,15 @@ public class Splash extends JFrame implements ActionListener {
         final int heightScreen = screenSize.height;
         
         //Background Image
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/front.jpg"));
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/front4.jpg"));
+        Image i2=i1.getImage().getScaledInstance(widthScreen, heightScreen, Image.SCALE_DEFAULT);
+        ImageIcon i3=new ImageIcon(i2);
         
         //Heading
         JLabel heading = new JLabel("EMPLOYEE MANAGEMENT SYSTEM",SwingConstants.CENTER);
         heading.setPreferredSize(new Dimension(1200,60));
-        heading.setFont(new Font("serif", Font.PLAIN, 60));
-        heading.setForeground(Color.RED);
+        heading.setFont(new Font("dialog", Font.BOLD, 65));
+        heading.setForeground(Color.BLACK);
         
         
         
@@ -32,6 +34,7 @@ public class Splash extends JFrame implements ActionListener {
         clickhere.setBackground(Color.BLACK);
         clickhere.setForeground(Color.WHITE);
         clickhere.addActionListener(this);
+        clickhere.setFocusable(false);
         
         //Continue Button
         JButton clickhere2 = new JButton("Login As Employee");
@@ -39,7 +42,7 @@ public class Splash extends JFrame implements ActionListener {
         clickhere2.setBackground(Color.BLACK);
         clickhere2.setForeground(Color.WHITE);
         clickhere2.addActionListener(this);
-        
+        clickhere2.setFocusable(false);
         //panel for all content
         JPanel p=new JPanel();
         p.setPreferredSize(new Dimension(widthScreen,heightScreen));
@@ -67,7 +70,7 @@ public class Splash extends JFrame implements ActionListener {
         
         //adding image to the background
        JLabel backImage=new JLabel(i1);
-       backImage.setPreferredSize(new Dimension(i1.getIconWidth(), i1.getIconHeight()));
+       backImage.setPreferredSize(new Dimension(i3.getIconWidth(), i3.getIconHeight()));
        backImage.setLayout(new FlowLayout());
         backImage.add(p);
        

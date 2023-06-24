@@ -7,7 +7,8 @@ import java.sql.*;
 
 public class Login extends JFrame implements ActionListener{
     
-    JTextField tfusername, tfpassword;
+    JTextField tfusername;
+    JPasswordField tfpassword;
     
     Login() {
         
@@ -30,7 +31,8 @@ public class Login extends JFrame implements ActionListener{
         add(lblpassword);
         
         //Password Textfeild
-        tfpassword = new JTextField();
+        tfpassword = new JPasswordField();
+        tfpassword.setEchoChar('*');
         tfpassword.setBounds(150, 70, 150, 30);
         add(tfpassword);
         
